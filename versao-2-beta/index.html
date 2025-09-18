@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cantina Escolar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Cantina Escolar</h1>
+        <nav>
+            <button class="nav-btn active" onclick="showSection('alunos')">Alunos</button>
+            <button class="nav-btn" onclick="showSection('produtos')">Produtos</button>
+            <button class="nav-btn" onclick="showSection('consumo')">Registrar Consumo</button>
+            <button class="nav-btn" onclick="showSection('resumo')">Resumo Mensal</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção de Alunos -->
+        <section id="alunos" class="section active">
+            <h2>Gerenciar Alunos</h2>
+            
+            <div class="form-container">
+                <h3>Cadastrar/Editar Aluno</h3>
+                <form id="form-aluno">
+                    <input type="hidden" id="aluno-id">
+                    <div class="form-group">
+                        <label for="aluno-nome">Nome Completo:</label>
+                        <input type="text" id="aluno-nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="aluno-sala">Sala:</label>
+                        <input type="text" id="aluno-sala" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="btn-salvar-aluno">Salvar Aluno</button>
+                        <button type="button" id="btn-cancelar-aluno" onclick="cancelarEdicaoAluno()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-container">
+                <h3>Lista de Alunos</h3>
+                <table id="tabela-alunos">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Sala</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Alunos serão inseridos aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Seção de Produtos -->
+        <section id="produtos" class="section">
+            <h2>Gerenciar Produtos</h2>
+            
+            <div class="form-container">
+                <h3>Cadastrar/Editar Produto</h3>
+                <form id="form-produto">
+                    <input type="hidden" id="produto-id">
+                    <div class="form-group">
+                        <label for="produto-nome">Nome do Produto:</label>
+                        <input type="text" id="produto-nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="produto-preco">Preço (R$):</label>
+                        <input type="number" id="produto-preco" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="btn-salvar-produto">Salvar Produto</button>
+                        <button type="button" id="btn-cancelar-produto" onclick="cancelarEdicaoProduto()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-container">
+                <h3>Lista de Produtos</h3>
+                <table id="tabela-produtos">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Produtos serão inseridos aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Seção de Registro de Consumo -->
+        <section id="consumo" class="section">
+            <h2>Registrar Consumo</h2>
+            
+            <div class="form-container">
+                <form id="form-consumo">
+                    <div class="form-group">
+                        <label for="consumo-aluno">Selecionar Aluno:</label>
+                        <select id="consumo-aluno" required>
+                            <option value="">Escolha um aluno...</option>
+                            <!-- Alunos serão inseridos aqui via JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Produtos Consumidos:</label>
+                        <div id="lista-produtos-consumo">
+                            <!-- Produtos serão inseridos aqui via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit">Registrar Consumo</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="consumo-preview">
+                <h3>Resumo do Consumo</h3>
+                <div id="preview-consumo">
+                    <p>Selecione um aluno e produtos para ver o resumo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Resumo Mensal -->
+        <section id="resumo" class="section">
+            <h2>Resumo Mensal</h2>
+            
+            <div class="filtros">
+                <div class="form-group">
+                    <label for="filtro-mes">Mês/Ano:</label>
+                    <input type="month" id="filtro-mes">
+                    <button onclick="atualizarResumo()">Atualizar</button>
+                </div>
+            </div>
+
+            <div class="resumo-stats">
+                <div class="stat-card">
+                    <h3>Total de Alunos</h3>
+                    <span id="total-alunos">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Arrecadado</h3>
+                    <span id="total-arrecadado">R$ 0,00</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Consumos Registrados</h3>
+                    <span id="total-consumos">0</span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3>Resumo por Aluno</h3>
+                <table id="tabela-resumo">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>Sala</th>
+                            <th>Itens Consumidos</th>
+                            <th>Total (R$)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Resumo será inserido aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para detalhes do consumo -->
+    <div id="modal-detalhes" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h3>Detalhes do Consumo</h3>
+            <div id="detalhes-consumo">
+                <!-- Detalhes serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
