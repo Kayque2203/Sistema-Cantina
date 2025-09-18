@@ -1,0 +1,426 @@
+Sistema de Cantina Escolar
+
+Sistema web completo para controle de consumo em cantina escolar, desenvolvido com Flask (backend) e React (frontend).
+
+📋 Funcionalidades
+
+✅ Gestão de Alunos
+
+•
+Cadastro de alunos com nome completo e sala
+
+•
+Listagem com filtros por nome e sala
+
+•
+Edição e exclusão de registros
+
+•
+Busca em tempo real
+
+✅ Gestão de Produtos
+
+•
+Cadastro de produtos com nome e preço
+
+•
+Controle de produtos ativos/inativos
+
+•
+Edição de preços e informações
+
+•
+Filtros e busca
+
+✅ Registro de Consumo
+
+•
+Interface intuitiva em 3 etapas:
+
+1.
+Seleção do aluno
+
+2.
+Seleção dos produtos
+
+3.
+Carrinho com quantidades
+
+
+
+•
+Cálculo automático de totais
+
+•
+Registro por data
+
+✅ Relatórios e Dashboard
+
+•
+Dashboard com estatísticas em tempo real
+
+•
+Relatórios mensais por aluno
+
+•
+Exportação para CSV
+
+•
+Gráficos de consumo
+
+•
+Faturamento mensal
+
+🚀 Tecnologias Utilizadas
+
+Backend
+
+•
+Flask - Framework web Python
+
+•
+SQLAlchemy - ORM para banco de dados
+
+•
+SQLite - Banco de dados
+
+•
+Flask-CORS - Suporte a CORS
+
+Frontend
+
+•
+React - Biblioteca JavaScript
+
+•
+Vite - Build tool e dev server
+
+•
+Tailwind CSS - Framework CSS
+
+•
+Lucide React - Ícones
+
+•
+Axios - Cliente HTTP
+
+📦 Estrutura do Projeto
+
+Plain Text
+
+
+cantina-escolar/
+├── backend/                 # Aplicação Flask
+│   ├── src/
+│   │   ├── main.py         # Arquivo principal
+│   │   ├── models/         # Modelos do banco
+│   │   │   ├── aluno.py
+│   │   │   ├── produto.py
+│   │   │   └── consumo.py
+│   │   └── routes/         # Rotas da API
+│   │       ├── aluno.py
+│   │       ├── produto.py
+│   │       └── consumo.py
+│   ├── venv/               # Ambiente virtual
+│   └── requirements.txt    # Dependências Python
+├── frontend/               # Aplicação React
+│   ├── src/
+│   │   ├── components/     # Componentes React
+│   │   ├── pages/          # Páginas da aplicação
+│   │   ├── lib/            # Utilitários
+│   │   └── App.jsx         # Componente principal
+│   ├── package.json        # Dependências Node.js
+│   └── vite.config.js      # Configuração do Vite
+└── README.md               # Este arquivo
+
+
+🛠️ Instalação e Execução
+
+Pré-requisitos
+
+•
+Python 3.8+
+
+•
+Node.js 16+
+
+•
+npm ou pnpm
+
+1. Backend (Flask)
+
+Bash
+
+
+# Navegar para o diretório do backend
+cd cantina-escolar/backend
+
+# Ativar ambiente virtual
+source venv/bin/activate
+
+# Instalar dependências (já instaladas)
+pip install -r requirements.txt
+
+# Executar servidor
+python src/main.py
+
+
+O backend estará disponível em: http://localhost:5000
+
+2. Frontend (React)
+
+Bash
+
+
+# Navegar para o diretório do frontend
+cd cantina-escolar/frontend
+
+# Instalar dependências (já instaladas)
+pnpm install
+
+# Executar servidor de desenvolvimento
+pnpm run dev --host
+
+
+O frontend estará disponível em: http://localhost:5173
+
+📱 Como Usar
+
+1. Dashboard
+
+•
+Acesse a página inicial para ver estatísticas gerais
+
+•
+Visualize resumo de alunos, produtos e faturamento
+
+•
+Acompanhe o top 5 de alunos com maior consumo
+
+2. Cadastro de Alunos
+
+•
+Clique em "Alunos" no menu lateral
+
+•
+Use "Novo Aluno" para adicionar estudantes
+
+•
+Preencha nome completo e sala
+
+•
+Use filtros para buscar alunos específicos
+
+3. Cadastro de Produtos
+
+•
+Acesse "Produtos" no menu
+
+•
+Adicione novos produtos com "Novo Produto"
+
+•
+Defina nome e preço
+
+•
+Ative/desative produtos conforme necessário
+
+4. Registro de Consumo
+
+•
+Vá para "Registrar Consumo"
+
+•
+Passo 1: Selecione o aluno
+
+•
+Passo 2: Clique nos produtos para adicionar
+
+•
+Passo 3: Ajuste quantidades no carrinho
+
+•
+Clique em "Finalizar" para salvar
+
+5. Relatórios
+
+•
+Acesse "Relatórios" para ver dados mensais
+
+•
+Selecione ano e mês desejados
+
+•
+Visualize consumo por aluno
+
+•
+Exporte dados em CSV
+
+•
+Clique no ícone de olho para detalhes por aluno
+
+🔧 API Endpoints
+
+Alunos
+
+•
+GET /api/alunos - Listar alunos
+
+•
+POST /api/alunos - Criar aluno
+
+•
+PUT /api/alunos/<id> - Atualizar aluno
+
+•
+DELETE /api/alunos/<id> - Excluir aluno
+
+Produtos
+
+•
+GET /api/produtos - Listar produtos
+
+•
+POST /api/produtos - Criar produto
+
+•
+PUT /api/produtos/<id> - Atualizar produto
+
+•
+DELETE /api/produtos/<id> - Excluir produto
+
+Consumos
+
+•
+GET /api/consumos - Listar consumos
+
+•
+POST /api/consumos - Registrar consumo
+
+•
+GET /api/relatorios/mensal/<ano>/<mes> - Relatório mensal
+
+•
+GET /api/relatorios/detalhado/<aluno_id>/<ano>/<mes> - Relatório detalhado
+
+💾 Banco de Dados
+
+O sistema utiliza SQLite com as seguintes tabelas:
+
+•
+alunos: id, nome_completo, sala, data_cadastro
+
+•
+produtos: id, nome, preco, ativo, data_cadastro
+
+•
+consumos: id, aluno_id, produto_id, quantidade, preco_unitario, data_consumo
+
+🎨 Interface
+
+•
+Design responsivo com Tailwind CSS
+
+•
+Interface intuitiva e amigável
+
+•
+Cores organizadas por funcionalidade
+
+•
+Ícones consistentes com Lucide React
+
+•
+Feedback visual para ações do usuário
+
+📊 Recursos Avançados
+
+•
+Filtros em tempo real em todas as listagens
+
+•
+Cálculos automáticos de totais e relatórios
+
+•
+Exportação CSV dos relatórios
+
+•
+Dashboard interativo com estatísticas
+
+•
+Validação de formulários no frontend e backend
+
+•
+Responsividade para dispositivos móveis
+
+🔒 Segurança
+
+•
+Validação de dados no backend
+
+•
+Sanitização de entradas
+
+•
+CORS configurado adequadamente
+
+•
+Tratamento de erros robusto
+
+🚀 Deploy
+
+Para deploy em produção:
+
+1.
+Configure um servidor web (nginx/apache)
+
+2.
+Use um WSGI server (gunicorn) para o Flask
+
+3.
+Build o frontend: pnpm run build
+
+4.
+Configure variáveis de ambiente
+
+5.
+Use um banco de dados mais robusto (PostgreSQL/MySQL)
+
+📝 Dados de Exemplo
+
+O sistema já vem com dados de exemplo:
+
+•
+Aluno: João Silva (Sala 5A), Maria Santos (Sala 6B)
+
+•
+Produto: Suco de Laranja (R$ 3,50)
+
+•
+Consumos: Registros de exemplo para demonstração
+
+🆘 Suporte
+
+Para dúvidas ou problemas:
+
+1.
+Verifique se ambos os servidores estão rodando
+
+2.
+Confirme que as portas 5000 (Flask) e 5173 (React) estão livres
+
+3.
+Verifique os logs no terminal para erros
+
+4.
+Certifique-se de que as dependências estão instaladas
+
+📄 Licença
+
+Este projeto foi desenvolvido para fins educacionais e de demonstração.
+
+
+
+
+Desenvolvido com ❤️ para facilitar o controle de cantinas escolares
+
